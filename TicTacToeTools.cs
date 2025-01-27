@@ -5,11 +5,17 @@ public class TicTacToeTools
 {
 	
     //ValidateGuess
-    public bool ValidateGuess(int boardPosition, List<string> boardArray)
+    public bool ValidateGuess(string boardPosition, List<string> boardArray)
     {
 
         bool result = true;
 
+        int.Parse(boardPosition);
+        if (int.TryParse(boardPosition)
+        {
+            Console.WriteLine("sorry, the guess needs to be a letter");
+            result = false;
+        }
         //Check if the position is in the range 0-8
         if (boardPosition < 1)
         {
@@ -23,11 +29,7 @@ public class TicTacToeTools
             result = false;
         }
         //Check if the position is a number
-        else if (int.TryParse(boardPosition)
-        {
-            Console.WriteLine("sorry, the guess needs to be a letter");
-            result = false;
-        }
+       
         //If the position is taken
         else if (boardArray[boardPosition] != "")
         {
@@ -68,6 +70,8 @@ public class TicTacToeTools
         return 
         //Validate the ways that player 2 can win
     }
+    //PrintBoard
+    public 
         //return player number 
         //return that it's a tie
         // Game is still playing
