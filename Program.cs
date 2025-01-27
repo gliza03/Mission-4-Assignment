@@ -40,12 +40,14 @@ do
     // Check if it's player 1 or player 2
     if (counter % 2 == 0)
     {
-        tt.printBoard(gameBoard);
+        tt.UpdateBoard(1, position, gameBoard);
+        tt.PrintBoard(gameBoard);
         counter++;
     }
     else
     {
-        tt.printBoard(gameBoard);
+        tt.UpdateBoard(1, position, gameBoard);
+        tt.PrintBoard(gameBoard);
         counter++;
     }
 
