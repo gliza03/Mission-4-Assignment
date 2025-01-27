@@ -25,12 +25,14 @@ for (int i = 0; i < gameBoard.Count; i++)
     Console.Write($"|{i+1}|");
 }
 
+Console.WriteLine("\nPlayer 1, it's your turn!");
+
 do
 {
     // Check if the input is valid
     do
     {
-        Console.Write("\nEnter the position for the board");
+        Console.WriteLine("\nEnter the position for the board");
         choice = Console.ReadLine();
     }
     while (!tt.ValidateGuess(choice, gameBoard));
@@ -44,26 +46,28 @@ do
         tt.UpdateBoard(1, position, gameBoard);
         tt.PrintBoard(gameBoard);
         counter++;
+        Console.WriteLine("\nIt's player 2's turn!");
     }
     else
     {
-        tt.UpdateBoard(1, position, gameBoard);
+        tt.UpdateBoard(2, position, gameBoard); // Changed to player 2
         tt.PrintBoard(gameBoard);
         counter++;
+        Console.WriteLine("\nIt's player 1's turn!");
     }
 
-
-    if (tt.CheckWin(gameBoard) == '1')
+    // And fix the win checks:
+    if (tt.CheckWin(gameBoard) == 1)  // Remove the character literals
     {
         Console.WriteLine("Player 1 has won! Player 2, you are a LOSER!");
         GameOver = true;
     }
-    else if (tt.CheckWin(gameBoard) == '2')
+    else if (tt.CheckWin(gameBoard) == 2)
     {
         Console.WriteLine("Player 2 has won! Player 1, you are a LOSER!");
         GameOver = true;
     }
-    else if (tt.CheckWin(gameBoard) == '3')
+    else if (tt.CheckWin(gameBoard) == 3)
     {
         Console.WriteLine("Nobody won! You both suck :D");
         GameOver = true;
