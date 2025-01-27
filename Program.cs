@@ -2,11 +2,14 @@
 int position = 0;
 bool GameOver = false;
 int counter = 0;
+
+TicTacToeTools tt = new TicTacToeTools();
+
 List<string> gameBoard = new List<string>()
 {
-    "1","2","3",
-    "4","5","6",
-    "7","8","9",
+    " "," "," ",
+    " "," "," ",
+    " "," "," ",
 };
 
 Console.WriteLine("Welcome to 4-10's Tic-Tac-Toe!");
@@ -19,7 +22,7 @@ for (int i = 0; i < gameBoard.Count; i++)
     {
         Console.WriteLine();
     }
-    Console.Write($"|{gameBoard[i]}|");
+    Console.Write($"|{i+1}|");
 }
 
 do
@@ -37,15 +40,15 @@ do
     // Check if it's player 1 or player 2
     if (counter % 2 == 0)
     {
-        Console.ReadLine(tt.updateBoard(1, position, gameBoard));
+        tt.printBoard(gameBoard);
         counter++;
     }
     else
     {
-        Console.ReadLine(tt.updateBoard(2, position, gameBoard));
+        tt.printBoard(gameBoard);
         counter++;
     }
-    
+
 
     if (tt.CheckWin(gameBoard) == '1')
     {
