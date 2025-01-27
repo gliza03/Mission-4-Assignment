@@ -30,6 +30,7 @@ do
     // Check if the input is valid
     do
     {
+        Console.Write("\nEnter the position for the board");
         choice = Console.ReadLine();
     }
     while (!tt.ValidateGuess(choice, gameBoard));

@@ -13,19 +13,13 @@ public class TicTacToeTools
         int boardPositionNum = int.Parse(boardPosition);
 
         //Check if the position is in the range 0-8
-        if (boardPositionNum < 1)
-        {
-            Console.WriteLine("Invalid Position: Pick a position between 1 and 9");
-            result = false;
-        }
-        //Check if the position is in the range 0-8
-        if (boardPositionNum > 9)
+        if (boardPositionNum < 1 || boardPositionNum > 9)
         {
             Console.WriteLine("Invalid Position: Pick a position between 1 and 9");
             result = false;
         }
         //If the position is taken
-        else if (boardArray[boardPositionNum] != "")
+        else if (boardArray[boardPositionNum - 1] != "")
         {
             result = false;
         }
@@ -39,12 +33,12 @@ public class TicTacToeTools
         if (playerNum == 1)
         {
             //update the board to reflect the new boardposition
-            boardArray[boardPosition] = "X";
+            boardArray[boardPosition - 1] = "X";
         }
         else if (playerNum == 2)
         {
             //update the board to reflect the new boardposition
-            boardArray[boardPosition] = "O";
+            boardArray[boardPosition - 1] = "O";
         }
         return boardArray;
 		//input X or O in respective boardposition
