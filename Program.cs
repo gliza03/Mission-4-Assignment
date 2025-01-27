@@ -1,24 +1,71 @@
 ﻿string choice = "";
-List<string> list = new List<string>()
+int position = 0;
+bool GameOver = false;
+int counter = 0;
+List<string> gameBoard = new List<string>()
 {
-    "a","a","a",
-    "a","a","a",
-    "a","a","a",
+    "1","2","3",
+    "4","5","6",
+    "7","8","9",
 };
 
 Console.WriteLine("Welcome to 4-10's Tic-Tac-Toe!");
 
-Console.WriteLine("Which symbol would you like to choose?\n 1. X\n 2. O");
+Console.WriteLine("Player 1 will be X and Player 2 will be O, are you ready?");
 
-//choice = verifyChoice(Console.ReadLine());
-
-
-for (int i = 0; i < list.Count; i++)
+for (int i = 0; i < gameBoard.Count; i++)
 {
     if (i % 3 == 0)
     {
         Console.WriteLine();
     }
-    Console.Write($"|{list[i]}|");
+    Console.Write($"|{gameBoard[i]}|");
 }
 
+do
+{
+    // Check if the input is valid
+    do
+    {
+        choice = Console.ReadLine();
+    }
+    while (!tt.ValidateGuess(choice, gameBoard));
+
+    // Turn the input into a position
+    position = int.Parse(choice);
+
+    // Check if it's player 1 or player 2
+    if (counter % 2 == 0)
+    {
+        Console.ReadLine(tt.updateBoard(1, position, gameBoard));
+        counter++;
+    }
+    else
+    {
+        Console.ReadLine(tt.updateBoard(2, position, gameBoard));
+        counter++;
+    }
+    
+
+    if (tt.CheckWin(gameBoard) == '1')
+    {
+        Console.WriteLine("Player 1 has won! Player 2, you are a LOSER!");
+        GameOver = true;
+    }
+    else if (tt.CheckWin(gameBoard) == '2')
+    {
+        Console.WriteLine("Player 2 has won! Player 1, you are a LOSER!");
+        GameOver = true;
+    }
+    else if (tt.CheckWin(gameBoard) == '3')
+    {
+        Console.WriteLine("Nobody won! You both suck :D");
+        GameOver = true;
+    }
+    else
+    {
+        GameOver = false;
+
+    }
+}
+while (!GameOver);
