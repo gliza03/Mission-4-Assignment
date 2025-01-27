@@ -10,28 +10,22 @@ public class TicTacToeTools
 
         bool result = true;
 
-        int.Parse(boardPosition);
-        if (int.TryParse(boardPosition)
-        {
-            Console.WriteLine("sorry, the guess needs to be a letter");
-            result = false;
-        }
+        int boardPositionNum = int.Parse(boardPosition);
+
         //Check if the position is in the range 0-8
-        if (boardPosition < 1)
+        if (boardPositionNum < 1)
         {
             Console.WriteLine("Invalid Position: Pick a position between 1 and 9");
             result = false;
         }
         //Check if the position is in the range 0-8
-        if (boardPosition > 9)
+        if (boardPositionNum > 9)
         {
             Console.WriteLine("Invalid Position: Pick a position between 1 and 9");
             result = false;
         }
-        //Check if the position is a number
-       
         //If the position is taken
-        else if (boardArray[boardPosition] != "")
+        else if (boardArray[boardPositionNum] != "")
         {
             result = false;
         }
@@ -47,7 +41,7 @@ public class TicTacToeTools
             //update the board to reflect the new boardposition
             boardArray[boardPosition] = "X";
         }
-        else (playerNum == 2)
+        else if (playerNum == 2)
         {
             //update the board to reflect the new boardposition
             boardArray[boardPosition] = "O";
@@ -96,16 +90,19 @@ public class TicTacToeTools
 
             // Game in progress
             return 0;
-        }
-
-
-        return 
-        //Validate the ways that player 2 can win
     }
-    //PrintBoard
-    public 
-        //return player number 
-        //return that it's a tie
-        // Game is still playing
+    public void PrintBoard(List<string> gameBoard)
+    {
+        for (int i = 0; i<gameBoard.Count; i++)
+        {
+            if (i % 3 == 0)
+            {
+                Console.WriteLine();
+            }
+        Console.Write($"|{i + 1}|");
+        }
+    }
+}
+    
         
 
