@@ -3,53 +3,37 @@ using System.Security.Cryptography.X509Certificates;
 
 public class TicTacToeTools
 {
-	
+
     //ValidateGuess
     public bool ValidateGuess(string boardPosition, List<string> boardArray)
     {
-
         bool result = true;
+        if (!int.TryParse(boardPosition, out int boardPositionNum))
+        {
+            Console.WriteLine("Invalid input: Please enter a number");
+            return false;
+        }
 
-        int boardPositionNum = int.Parse(boardPosition);
-
-        //Check if the position is in the range 0-8
-        if (boardPositionNum < 1)
+        if (boardPositionNum < 1 || boardPositionNum > 9)
         {
             Console.WriteLine("Invalid Position: Pick a position between 1 and 9");
-            result = false;
-        }
-        //Check if the position is in the range 0-8
-        if (boardPositionNum > 9)
-        {
-            Console.WriteLine("Invalid Position: Pick a position between 1 and 9");
-            result = false;
-        }
-        //If the position is taken
-        else if (boardArray[boardPositionNum] != "")
-        {
-            result = false;
+            return false;
         }
 
-        return result;//return true if position is available
+        if (boardArray[boardPositionNum - 1] != " ")
+        {
+            Console.WriteLine("Position already taken!");
+            return false;
+        }
+        return result;
     }
     //Update board
     public List<string> UpdateBoard(int playerNum, int boardPosition, List<string> boardArray)
-	{
-        //convert playernumber to X or O
-        if (playerNum == 1)
-        {
-            //update the board to reflect the new boardposition
-            boardArray[boardPosition] = "X";
-        }
-        else if (playerNum == 2)
-        {
-            //update the board to reflect the new boardposition
-            boardArray[boardPosition] = "O";
-        }
+    {
+        string marker = playerNum == 1 ? "X" : "O";
+        boardArray[boardPosition - 1] = marker;
         return boardArray;
-		//input X or O in respective boardposition
-		//Return the Board
-	}
+    }
     //CheckWin
     public int CheckWin(List<string> boardArray)
     {
@@ -93,14 +77,18 @@ public class TicTacToeTools
     }
     public void PrintBoard(List<string> gameBoard)
     {
-        for (int i = 0; i<gameBoard.Count; i++)
+        Console.WriteLine();
+        for (int i = 0; i < gameBoard.Count; i++)
         {
-            if (i % 3 == 0)
+            if (i % 3 == 0 && i != 0)
             {
                 Console.WriteLine();
+                Console.WriteLine("-----------------");
             }
-        Console.Write($"|{i + 1}|");
+            string value = gameBoard[i] == " " ? (i + 1).ToString() : gameBoard[i];
+            Console.Write($"| {value} |");
         }
+        Console.WriteLine();
     }
 }
     
